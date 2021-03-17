@@ -2,8 +2,10 @@
 #define WYRAZENIEZESP_HH
 
 
-
 #include "LZespolona.hh"
+#include <iostream>
+
+using namespace std;
 
 
 /*!
@@ -29,7 +31,10 @@ struct WyrazenieZesp {
  */
 
 
-void Wyswietl(WyrazenieZesp  WyrZ);
+ostream& operator << (ostream& StrmWyj, WyrazenieZesp& WyrZ);
+
 LZespolona Oblicz(WyrazenieZesp  WyrZ);
+
+istream& operator >> (istream& StrmWej, WyrazenieZesp& WyrZ);
 
 #endif

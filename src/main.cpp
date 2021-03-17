@@ -1,5 +1,6 @@
 #include <iostream>
 #include "BazaTestu.hh"
+#include "LZespolona.hh"
 
 using namespace std;
 
@@ -8,6 +9,9 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
+
+LZespolona Odpowiedz;
+int LiczbaProb;
 
   if (argc < 2) {
     cout << endl;
@@ -33,10 +37,36 @@ int main(int argc, char **argv)
 
   WyrazenieZesp   WyrZ_PytanieTestowe;
   
-  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) {
-    cout << " Czesc rzeczywista pierwszego argumentu: ";
-    cout << WyrZ_PytanieTestowe.Arg1.re << endl;
-  }
+  while (PobierzNastpnePytanie(&BazaT,&WyrZ_PytanieTestowe)) 
+    {
+    cout <<"Podaj wynik operacji: " << WyrZ_PytanieTestowe << " =" << endl;
+    LiczbaProb=3;
+    while(LiczbaProb>0)
+        {
+        cout << "Twoja odpowiedz: ";
+        cin >> Odpowiedz;
+        if(cin.fail())
+            {
+            LiczbaProb--;
+            if(LiczbaProb == 0)
+                {cout << "Blad. Prawidlowym wynikiem jest: " << Oblicz(WyrZ_PytanieTestowe) << endl << endl;}
+            else
+                {cout << endl << "Blad zapisu liczby zespolonej. Sprobuj jeszcze raz"<< endl << endl;}
+            cin.ignore(10000, '\n');
+            cin.clear();
+            }
+        else
+            {
+            LiczbaProb=0;
+            if(Odpowiedz == (Oblicz(WyrZ_PytanieTestowe)))
+                {cout << "Odpowiedz poprawna" << endl << endl;}
+            else
+                {cout << "Blad. Prawidlowym wynikiem jest: " << Oblicz(WyrZ_PytanieTestowe) << endl << endl;}
+            }
+        cin.ignore(10000, '\n');
+        cin.clear();
+        }
+    }
 
   
   cout << endl;
