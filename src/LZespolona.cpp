@@ -2,7 +2,7 @@
 #include <iostream>
 #include <math.h>
 
-#define MIN_ROZNICA 0.00001
+#define MIN_ROZNICA 0.0001
 
 using namespace std;
 
@@ -119,14 +119,12 @@ LZespolona operator / (LZespolona Skl1, LZespolona Skl2)
 LZespolona Wynik;
 if(Modul(Skl2)==0)
     {
-    cerr << "Blad: proba dzielenia przez zero." << endl;
-    return Skl1;
+    throw runtime_error("Próba dzielenia przez zero");
     }
 else
     {
     Wynik = Skl1 * Sprzerzenie(Skl2);
-    Wynik.re = Wynik.re/Potegowanie(Modul(Skl2));
-    Wynik.im = Wynik.im/Potegowanie(Modul(Skl2));
+    Wynik = Wynik/Potegowanie(Modul(Skl2));
     return Wynik;
     }
 }
@@ -147,8 +145,7 @@ LZespolona operator / (LZespolona Skl1, double Liczba)
 LZespolona Wynik;
 if(Liczba == 0)
     {
-    cerr << "Blad: proba dzielenia przez zero." << endl;
-    return Skl1;
+    throw runtime_error("Próba dzielenia przez zero");
     }
 else
     {

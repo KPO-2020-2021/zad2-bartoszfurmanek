@@ -74,9 +74,18 @@ switch(WyrZ.Op)                     //Wybor operacji
         Wynik=Skl1/Skl2;            //Realizacja dzielenia
         break;
 }
-
 return Wynik;
 }
+
+/*!
+ * Realizuje wczyatnie wyrazenie zespolonego skladajacego sie z dwoch liczb zespolonych.
+ * Argumenty:
+ *    WyrZ - Wyrazenie zespolone, ktore ma zostac wczytane,
+ *    StrmWyj - Strumień z którego dane maja zostać wczytane.
+ * Zwraca:
+ *    Strumień wejsciowy.
+ */
+
 
 
 istream& operator >> (istream& StrmWej, WyrazenieZesp& WyrZ)
@@ -112,7 +121,7 @@ switch(Operator)                        //Określenie operatora wyrażenia i zap
         break;
     default:
         StrmWej.setstate(ios::failbit); //Ustawienie znacznika błędu w przypadku nieznanego operatora
-        return StrmWej;
+        throw runtime_error("Nieznany operator");
     }
 
 StrmWej >> WyrZ.Arg2;                   //Wczytanie drugiej liczby zespolonej

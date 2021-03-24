@@ -1,6 +1,7 @@
 #include <iostream>
 #include "BazaTestu.hh"
 #include "LZespolona.hh"
+#include "Statystyki.hh"
 
 using namespace std;
 
@@ -11,7 +12,10 @@ int main(int argc, char **argv)
 {
 
 LZespolona Odpowiedz;
+Statystyka Stat;
 int LiczbaProb;
+
+Clear(Stat);
 
   if (argc < 2) {
     cout << endl;
@@ -49,7 +53,10 @@ int LiczbaProb;
             {
             LiczbaProb--;
             if(LiczbaProb == 0)
-                {cout << "Blad. Prawidlowym wynikiem jest: " << Oblicz(WyrZ_PytanieTestowe) << endl << endl;}
+                {
+                BlednaOdpowiedz(Stat);
+                cout << "Blad. Prawidlowym wynikiem jest: " << Oblicz(WyrZ_PytanieTestowe) << endl << endl;
+                }
             else
                 {cout << endl << "Blad zapisu liczby zespolonej. Sprobuj jeszcze raz"<< endl << endl;}
             cin.ignore(10000, '\n');
@@ -59,18 +66,28 @@ int LiczbaProb;
             {
             LiczbaProb=0;
             if(Odpowiedz == (Oblicz(WyrZ_PytanieTestowe)))
-                {cout << "Odpowiedz poprawna" << endl << endl;}
+                {
+                PoprawnaOdpowiedz(Stat);
+                cout << "Odpowiedz poprawna" << endl << endl;
+                }
             else
-                {cout << "Blad. Prawidlowym wynikiem jest: " << Oblicz(WyrZ_PytanieTestowe) << endl << endl;}
+                {
+                BlednaOdpowiedz(Stat);
+                cout << "Blad. Prawidlowym wynikiem jest: " << Oblicz(WyrZ_PytanieTestowe) << endl << endl;
+                }
             }
         cin.ignore(10000, '\n');
         cin.clear();
         }
     }
 
+
+
   
   cout << endl;
   cout << " Koniec testu" << endl;
+  cout << endl;
+  Wyswietl(Stat);
   cout << endl;
 
 }
