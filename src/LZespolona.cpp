@@ -167,7 +167,7 @@ else
 
 ostream& operator << (ostream& StrmWy, const LZespolona &Skl1)
 {
-return StrmWy << "(" << Skl1.re << showpos << Skl1.im << noshowpos << "i)";
+return StrmWy << "(" <<Skl1.re << showpos << Skl1.im << noshowpos << "i)";
 }
 
 /*!

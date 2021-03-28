@@ -108,10 +108,10 @@ if(StrmWej.fail())
 switch(Operator)                        //Określenie operatora wyrażenia i zapisanie
     {
     case '+':
-        WyrZ.Op = Op_Odejmij;
+        WyrZ.Op = Op_Dodaj;
         break;
     case '-':
-        WyrZ.Op = Op_Dodaj;
+        WyrZ.Op = Op_Odejmij;
         break;
     case '*':
         WyrZ.Op = Op_Mnoz;

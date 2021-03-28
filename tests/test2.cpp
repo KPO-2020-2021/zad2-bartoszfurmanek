@@ -1,7 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "./doctest/doctest.h"
 #include "LZespolona.hh"
-#include "WyrazenieZesp.hh"
+
 
 TEST_CASE("Test LZespolona dzielenie przez skalar 1") {
     LZespolona x, y;
@@ -134,5 +134,65 @@ TEST_CASE("Test LZespolona Modul") {
    
     CHECK(y==Modul(x));
 }
+
+TEST_CASE("Test LZespolona Wyświetlanie") {
+    LZespolona x;
+    
+    x.re = 2;
+    x.im = 1;
+
+    std::ostringstream out;
+
+    out << x;
+    CHECK("(2+1i)" == out.str());
+
+
+}
+
+
+TEST_CASE("Test LZespolona Wyświetlanie") { //Test zaokrąglenia
+    LZespolona x;
+    
+    x.re = 2.0/3.0;
+    x.im = 1;
+
+    std::ostringstream out;
+
+    out << x;
+    CHECK("(0.666667+1i)" == out.str());
+
+
+}
+
+
+TEST_CASE("Test LZespolona Wczytywanie") {  
+    LZespolona x;
+
+
+    std::ostringstream out;
+    std::istringstream in("(2+4.5i)");
+    in >> x;
+    out << x;
+    
+    CHECK("(2+4.5i)" == out.str());
+
+
+}
+
+
+TEST_CASE("Test LZespolona Wczytywanie") {  //Błąd zapisu
+    LZespolona x;
+
+
+    std::istringstream in("2+4.5i");
+    in >> x;
+    
+    CHECK(in.fail());
+
+
+}
+
+
+
 
 

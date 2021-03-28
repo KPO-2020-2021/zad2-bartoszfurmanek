@@ -80,5 +80,49 @@ TEST_CASE("Test WyrazenieZesp obliczanie wyrazenia 4") {  //Dziel liczb zespolon
    
     CHECK(Oblicz(z) == x / y);
 }
+/*
+TEST_CASE("Test WyrazenieZesp wyswietlanie") {
+    WyrazenieZesp z;
 
+    z.Arg1.re = 2;
+    z.Arg1.im = 1;
+    z.Op = Op_Dodaj;
+    z.Arg2.re = 1;
+    z.Arg2.im = 2;
+
+
+    std::ostringstream out;
+
+    out << z;
+
+    
+    CHECK("(2+1i) + (1+2i)" == out.str());
+
+
+}
+
+
+TEST_CASE("Test WyraznieZesp Wczytywanie") {  
+    WyrazenieZesp z;
+
+    std::ostringstream out;
+    std::istringstream in("(2+1i) + (1+2i)");
+    in >> z;
+    out << z;
+    
+    CHECK("(2+1i) + (1+2i)" == out.str());
+
+
+}
+*/
+
+TEST_CASE("Test LZespolona Wczytywanie") { //Bledny operator
+    WyrazenieZesp z;
+    
+    std::istringstream in("(7+4i) % (3+1i)");
+    
+    WARN_THROWS(in >> z);
+
+
+}
 
