@@ -8,7 +8,7 @@ TEST_CASE("Test Statystyki czyszczenie wynikow1") {
     
     Stat.popr=3;
     Stat.blad=2;
-    Clear(Stat);
+    Stat.Clear();
     
     if((Stat.popr==0)&&(Stat.blad==0))
     {Wynik=1;}
@@ -23,7 +23,7 @@ TEST_CASE("Test Statystyki poprawna odpowiedz") {
     Stat.popr=0;
     Stat.blad=0;
 
-    PoprawnaOdpowiedz(Stat);
+    Stat.PoprawnaOdpowiedz();
     
     if((Stat.popr==1)&&(Stat.blad==0))
     {Wynik=1;}
@@ -38,7 +38,7 @@ TEST_CASE("Test Statystyki bledna odpowiedz") {
     Stat.popr=0;
     Stat.blad=0;
 
-    BlednaOdpowiedz(Stat);
+    Stat.BlednaOdpowiedz();
     
     if((Stat.popr==0)&&(Stat.blad==1))
     {Wynik=1;}
@@ -54,14 +54,14 @@ TEST_CASE("Test Statystyki kilka odpowiedzi") {
     Stat.popr=0;
     Stat.blad=0;
 
-    PoprawnaOdpowiedz(Stat);
-    PoprawnaOdpowiedz(Stat);
-    PoprawnaOdpowiedz(Stat);
-    BlednaOdpowiedz(Stat);
-    BlednaOdpowiedz(Stat);
-    PoprawnaOdpowiedz(Stat);
-    BlednaOdpowiedz(Stat);
-    BlednaOdpowiedz(Stat);
+    Stat.PoprawnaOdpowiedz();
+    Stat.PoprawnaOdpowiedz();
+    Stat.PoprawnaOdpowiedz();
+    Stat.BlednaOdpowiedz();
+    Stat.BlednaOdpowiedz();
+    Stat.PoprawnaOdpowiedz();
+    Stat.BlednaOdpowiedz();
+    Stat.BlednaOdpowiedz();
     
     if((Stat.popr==4)&&(Stat.blad==4))
     {Wynik=1;}
@@ -76,17 +76,17 @@ TEST_CASE("Test Statystyki kilka odpowiedzi") {
     Stat.popr=0;
     Stat.blad=0;
 
-    PoprawnaOdpowiedz(Stat);
-    PoprawnaOdpowiedz(Stat);
-    PoprawnaOdpowiedz(Stat);
-    BlednaOdpowiedz(Stat);
-    BlednaOdpowiedz(Stat);
-    PoprawnaOdpowiedz(Stat);
-    BlednaOdpowiedz(Stat);
-    BlednaOdpowiedz(Stat);
-    PoprawnaOdpowiedz(Stat);
-    PoprawnaOdpowiedz(Stat);
+    Stat.PoprawnaOdpowiedz();
+    Stat.PoprawnaOdpowiedz();
+    Stat.PoprawnaOdpowiedz();
+    Stat.BlednaOdpowiedz();
+    Stat.BlednaOdpowiedz();
+    Stat.PoprawnaOdpowiedz();
+    Stat.BlednaOdpowiedz();
+    Stat.BlednaOdpowiedz();
+    Stat.PoprawnaOdpowiedz();
+    Stat.PoprawnaOdpowiedz();
     
     
-    CHECK(ProcentPoprawnych(Stat)==60);
+    CHECK(Stat.ProcentPoprawnych()==60);
 }

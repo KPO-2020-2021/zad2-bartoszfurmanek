@@ -15,10 +15,10 @@ using namespace std;
  *    Stat - Statytyska której wartości mają zostać wyzerowane.
  */
 
-void Clear(Statystyka &Stat)
+void Statystyka::Clear()
 {
-Stat.popr=0;
-Stat.blad=0;
+this->popr=0;
+this->blad=0;
 }
 
 /*!
@@ -27,9 +27,9 @@ Stat.blad=0;
  *    Stat - Statytyska której wartości wartość poprawnych odpowiedzi ma zostać zwiększona.
  */
 
-void PoprawnaOdpowiedz(Statystyka &Stat)
+void Statystyka::PoprawnaOdpowiedz()
 {
-Stat.popr +=1;
+this->popr +=1;
 }
 
 /*!
@@ -38,9 +38,9 @@ Stat.popr +=1;
  *    Stat - Statytyska której wartości wartość błędnych odpowiedzi ma zostać zwiększona.
  */
 
-void BlednaOdpowiedz(Statystyka &Stat)
+void Statystyka::BlednaOdpowiedz()
 {
-Stat.blad +=1;
+this->blad +=1;
 }
 
 /*!
@@ -51,9 +51,9 @@ Stat.blad +=1;
  *    Procentowa wartość poprawnych odpowiedzi wzgledem wszystkich odpowiedzi.
  */
 
-float ProcentPoprawnych(Statystyka &Stat)
+float Statystyka::ProcentPoprawnych()
 {
-return ((Stat.popr*100)/(Stat.popr+Stat.blad));
+return ((this->popr*100)/(this->popr+this->blad));
 }
 
 /*!
@@ -62,10 +62,10 @@ return ((Stat.popr*100)/(Stat.popr+Stat.blad));
  *    Stat - Statytyska której dane maja zostac wyswietlone.
  */
 
-void Wyswietl(Statystyka Stat)
+void Statystyka::Wyswietl()
 {
 cout << endl;
-cout << "Ilosc poprawnych odpowiedzi: " << Stat.popr << endl;
-cout << "Ilosc blednych odpowiedzi: " << Stat.blad << endl;
-cout << "Wynik procentowy poprawnych odpowedzi: " << ProcentPoprawnych(Stat) << "%";
+cout << "Ilosc poprawnych odpowiedzi: " << this->popr << endl;
+cout << "Ilosc blednych odpowiedzi: " << this->blad << endl;
+cout << "Wynik procentowy poprawnych odpowedzi: " << (*this).ProcentPoprawnych() << "%";
 }

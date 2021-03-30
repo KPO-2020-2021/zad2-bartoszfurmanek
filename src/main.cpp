@@ -3,6 +3,7 @@
 #include "LZespolona.hh"
 #include "Statystyki.hh"
 
+
 using namespace std;
 
 
@@ -10,12 +11,11 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-
 LZespolona Odpowiedz;
 Statystyka Stat;
 int LiczbaProb;
 
-Clear(Stat);
+Stat.Clear();
 
   if (argc < 2) {
     cout << endl;
@@ -54,8 +54,8 @@ Clear(Stat);
             LiczbaProb--;
             if(LiczbaProb == 0)
                 {
-                BlednaOdpowiedz(Stat);
-                cout << "Blad. Prawidlowym wynikiem jest: " << Oblicz(WyrZ_PytanieTestowe) << endl << endl;
+                Stat.BlednaOdpowiedz();
+                cout << "Blad. Prawidlowym wynikiem jest: " << WyrZ_PytanieTestowe.Oblicz() << endl << endl;
                 }
             else
                 {cout << endl << "Blad zapisu liczby zespolonej. Sprobuj jeszcze raz"<< endl << endl;}
@@ -65,15 +65,15 @@ Clear(Stat);
         else
             {
             LiczbaProb=0;
-            if(Odpowiedz == (Oblicz(WyrZ_PytanieTestowe)))
+            if(Odpowiedz == (WyrZ_PytanieTestowe.Oblicz()))
                 {
-                PoprawnaOdpowiedz(Stat);
+                Stat.PoprawnaOdpowiedz();
                 cout << "Odpowiedz poprawna" << endl << endl;
                 }
             else
                 {
-                BlednaOdpowiedz(Stat);
-                cout << "Blad. Prawidlowym wynikiem jest: " << Oblicz(WyrZ_PytanieTestowe) << endl << endl;
+                Stat.BlednaOdpowiedz();
+                cout << "Blad. Prawidlowym wynikiem jest: " << WyrZ_PytanieTestowe.Oblicz() << endl << endl;
                 }
             }
         cin.ignore(10000, '\n');
@@ -87,7 +87,6 @@ Clear(Stat);
   cout << endl;
   cout << " Koniec testu" << endl;
   cout << endl;
-  Wyswietl(Stat);
+  Stat.Wyswietl();
   cout << endl;
-
 }

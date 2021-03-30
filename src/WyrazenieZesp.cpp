@@ -51,15 +51,15 @@ return StrmWyj;
  *    Wynik obliczenia wyrazenia zespolonego.
  */
 
-LZespolona Oblicz(WyrazenieZesp WyrZ)
+LZespolona WyrazenieZesp::Oblicz()
 {
 LZespolona Skl1, Skl2, Wynik;       //Utworzenie liczb zespolonych argumentow oraz wyniku
-Skl1.re=WyrZ.Arg1.re;
-Skl1.im=WyrZ.Arg1.im;
-Skl2.re=WyrZ.Arg2.re;
-Skl2.im=WyrZ.Arg2.im;
+Skl1.re=this->Arg1.re;
+Skl1.im=this->Arg1.im;
+Skl2.re=this->Arg2.re;
+Skl2.im=this->Arg2.im;
 
-switch(WyrZ.Op)                     //Wybor operacji
+switch(this->Op)                     //Wybor operacji
 {
     case Op_Dodaj:
         Wynik=Skl1+Skl2;            //Realizacja dodawania
@@ -71,7 +71,7 @@ switch(WyrZ.Op)                     //Wybor operacji
         Wynik=Skl1*Skl2;            //Realizacja mnozenie
         break;
     case Op_Dziel:
-        Wynik=Skl1/Skl2;            //Realizacja dzielenia
+        Wynik=Skl1/Skl2;         //Realizacja dzielenia
         break;
 }
 return Wynik;

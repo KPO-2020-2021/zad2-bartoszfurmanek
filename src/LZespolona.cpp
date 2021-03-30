@@ -14,12 +14,11 @@ using namespace std;
  * Zwraca:
  *    Sume dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona  LZespolona::operator + (LZespolona  Z)const
 {
-  LZespolona  Wynik;
-
-  Wynik.re = Skl1.re + Skl2.re;
-  Wynik.im = Skl1.im + Skl2.im;
+  LZespolona Wynik;
+  Wynik.re = this->re + Z.re;
+  Wynik.im = this->im + Z.im;
   return Wynik;
 }
 
@@ -32,12 +31,11 @@ LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2)
  *    Roznica dwoch skladnikow przekazanych jako parametry.
  */
 
-LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona  LZespolona::operator - (LZespolona  Z)const
 {
-  LZespolona  Wynik;
-
-  Wynik.re = Skl1.re - Skl2.re;
-  Wynik.im = Skl1.im - Skl2.im;
+  LZespolona Wynik;
+  Wynik.re = this->re - Z.re;
+  Wynik.im = this->im - Z.im;
   return Wynik;
 }
 
@@ -50,12 +48,12 @@ LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2)
  *    Iloczyn dwoch skladnikow przekazanych jako parametry.
  */
 
-LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona  LZespolona::operator * (LZespolona  Z)const
 {
   LZespolona  Wynik;
 
-  Wynik.re = (Skl1.re*Skl2.re) - (Skl1.im*Skl2.im);
-  Wynik.im = (Skl1.im*Skl2.re) + (Skl1.re*Skl2.im);
+  Wynik.re = (this->re*Z.re) - (this->im*Z.im);
+  Wynik.im = (this->im*Z.re) + (this->re*Z.im);
   return Wynik;
 }
 
@@ -82,10 +80,10 @@ return Wynik;
  *    Modul liczby zespolonej podanej jako parametr.
  */
 
-double Modul(LZespolona Skl1)
+double LZespolona::Modul()
 {
 double Wynik;
-Wynik = sqrt(Potegowanie(Skl1.re) + Potegowanie(Skl1.im));
+Wynik = sqrt(Potegowanie(this->re) + Potegowanie(this->im));
 return Wynik;
 }
 
@@ -97,10 +95,12 @@ return Wynik;
  *    Sprzerzenie liczby zespolonej podanej jako parametr.
  */
 
-LZespolona Sprzerzenie(LZespolona Skl1)
+LZespolona LZespolona::Sprzerzenie()
 {
-Skl1.im = -Skl1.im;
-return Skl1;
+LZespolona Wynik;
+Wynik.im= -this->im;
+Wynik.re= this->re;
+return Wynik;
 }
 
 /*!
@@ -114,20 +114,13 @@ return Skl1;
  *     Jezeli modul drugiego skladnika jest rowny zeru, funkcja zwroci pierwszy skladnik dzielenia.
 */
 
-LZespolona operator / (LZespolona Skl1, LZespolona Skl2)
+LZespolona LZespolona::operator / (LZespolona Z)const
 {
 LZespolona Wynik;
-if(Modul(Skl2)==0)
-    {
-    throw runtime_error("Próba dzielenia przez zero");
-    }
-else
-    {
-    Wynik = Skl1 * Sprzerzenie(Skl2);
-    Wynik = Wynik/Potegowanie(Modul(Skl2));
-    return Wynik;
-    }
+Wynik = (*this * Z.Sprzerzenie())/Potegowanie(Z.Modul());
+return Wynik;
 }
+
 
 /*!
  * Realizuje dzielenie liczby zespolonej przez skalar.
@@ -140,7 +133,7 @@ else
  *     Jezeli skalar jest rowny zeru funkcja zwroci dzielona liczbe zespolona.
 */
 
-LZespolona operator / (LZespolona Skl1, double Liczba)
+LZespolona LZespolona::operator / (double Liczba)const
 {
 LZespolona Wynik;
 if(Liczba == 0)
@@ -149,11 +142,30 @@ if(Liczba == 0)
     }
 else
     {
-    Wynik.re = Skl1.re/Liczba;
-    Wynik.im = Skl1.im/Liczba;
+    Wynik.re = this->re/Liczba;
+    Wynik.im = this->im/Liczba;
     return Wynik;
     }
 }
+
+/*!
+ * Realizuje porownanie dwoch liczb zespolonych.
+ * Argumenty:
+ *    Skl1 - pierwszy skladnik,
+ *    Skl2 - drugi skladnik.
+ * Zwraca:
+ *    True, jeżeli liczby zespolone są takie same, lub False, jeżeli są różne.
+ */
+
+
+bool LZespolona::operator == (LZespolona Z)const
+{
+if((abs(this->re - Z.re) <= MIN_ROZNICA) && (abs(this->im - Z.im) <= MIN_ROZNICA))
+    {return true;}
+else
+    {return false;}
+}
+
 
 
 /*!
@@ -165,9 +177,9 @@ else
  *    Strumień wyjściowy
  */
 
-ostream& operator << (ostream& StrmWy, const LZespolona &Skl1)
+ostream& operator << (ostream &StrmWyj, LZespolona Z)
 {
-return StrmWy << "(" <<Skl1.re << showpos << Skl1.im << noshowpos << "i)";
+return StrmWyj << "(" <<Z.re << showpos << Z.im << noshowpos << "i)";
 }
 
 /*!
@@ -191,7 +203,7 @@ else
     {return false;}
 }
 
-istream& operator >> (istream& StrmWej, LZespolona &Skl1)
+istream& operator >> (istream &StrmWej, LZespolona &Z)
 {
 
 if(!WczytajZnak(StrmWej, '('))            //Sprawdzenie czy znak jest nawiasem (jeżeli nie ustawiamy znacznik błędu)
@@ -200,11 +212,11 @@ if(!WczytajZnak(StrmWej, '('))            //Sprawdzenie czy znak jest nawiasem (
     return StrmWej;
     }
 
-StrmWej >> Skl1.re;                     //Wczytanie częsci rzeczywistej
+StrmWej >> Z.re;                     //Wczytanie częsci rzeczywistej
 if(StrmWej.fail())
     {return StrmWej;}
 
-StrmWej >> Skl1.im;                     //Wczytanie częsci urojonej
+StrmWej >> Z.im;                     //Wczytanie częsci urojonej
 if(StrmWej.fail())
     {return StrmWej;}
 
@@ -223,19 +235,5 @@ if(!WczytajZnak(StrmWej, ')'))            //Sprawdzenie czy znak jest nawiasem (
 return StrmWej;
 }
 
-/*!
- * Realizuje porownanie dwoch liczb zespolonych.
- * Argumenty:
- *    Skl1 - pierwszy skladnik,
- *    Skl2 - drugi skladnik.
- * Zwraca:
- *    True, jeżeli liczby zespolone są takie same, lub False, jeżeli są różne.
- */
 
-bool operator == (LZespolona Skl1, LZespolona Skl2)
-{
-if((abs(Skl1.re - Skl2.re) <= MIN_ROZNICA) && (abs(Skl1.im - Skl2.im) <= MIN_ROZNICA))
-    {return true;}
-else
-    {return false;}
-}
+

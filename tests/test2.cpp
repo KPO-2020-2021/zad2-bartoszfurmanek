@@ -93,7 +93,7 @@ TEST_CASE("Test LZespolona sprzerzenia 1") {
     y.im = -2;
 
    
-    CHECK(Sprzerzenie(x)==y);
+    CHECK(x.Sprzerzenie()==y);
 }
 
 TEST_CASE("Test LZespolona sprzerzenia 2") {
@@ -106,7 +106,7 @@ TEST_CASE("Test LZespolona sprzerzenia 2") {
     y.im = 0;
 
    
-    CHECK(Sprzerzenie(x)==y);
+    CHECK(x.Sprzerzenie()==y);
 }
 
 TEST_CASE("Test LZespolona sprzerzenia 3") {
@@ -119,7 +119,7 @@ TEST_CASE("Test LZespolona sprzerzenia 3") {
     y.im = 2;
 
    
-    CHECK(Sprzerzenie(x)==y);
+    CHECK(x.Sprzerzenie()==y);
 }
 
 TEST_CASE("Test LZespolona Modul") {
@@ -132,7 +132,7 @@ TEST_CASE("Test LZespolona Modul") {
     y = sqrt(5);
 
    
-    CHECK(y==Modul(x));
+    CHECK(y==x.Modul());
 }
 
 TEST_CASE("Test LZespolona Wyświetlanie") {

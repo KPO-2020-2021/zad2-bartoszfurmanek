@@ -18,31 +18,27 @@ using namespace std;
 struct  LZespolona {
   double   re;    /*! Pole repezentuje czesc rzeczywista. */
   double   im;    /*! Pole repezentuje czesc urojona. */
+
+public:
+
+LZespolona  operator + (LZespolona  Z)const;
+
+LZespolona  operator - (LZespolona  Z)const;
+
+LZespolona  operator * (LZespolona  Z)const;
+
+double Modul();
+
+LZespolona Sprzerzenie();
+
+LZespolona operator / (const LZespolona  Z)const;
+
+bool operator == ( LZespolona Z)const;
+
+LZespolona operator / (double Liczba)const;
+
+friend ostream& operator << (ostream &StrmWyj, LZespolona Z);
+
+friend istream& operator >> (istream &StrmWej, LZespolona &Z);
 };
-
-LZespolona  operator + (LZespolona  Skl1,  LZespolona  Skl2);
-
-LZespolona  operator - (LZespolona  Skl1,  LZespolona  Skl2);
-
-LZespolona  operator * (LZespolona  Skl1,  LZespolona  Skl2);
-
-double Potegowanie(double Liczba);
-
-double Modul(LZespolona Skl1);
-
-LZespolona Sprzerzenie(LZespolona Skl1);
-
-LZespolona operator / (LZespolona Skl1, LZespolona Skl2);
-
-ostream& operator << (ostream& StrmWy, const LZespolona &Skl1);
-
-istream& operator >> (istream& StrmWej, LZespolona &Skl1);
-
-bool operator == (LZespolona Skl1, LZespolona Skl2);
-
-bool WczytajZnak(istream& StrmWej, char Znak);
-
-LZespolona operator / (LZespolona Skl1, double Liczba);
-
-
 #endif

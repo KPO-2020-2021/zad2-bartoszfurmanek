@@ -19,7 +19,7 @@ TEST_CASE("Test WyrazenieZesp obliczanie wyrazenia 1") {  //Dodawnie liczb zespo
     z.Arg2.re = 1;
     z.Arg2.im = 1;
    
-    CHECK(Oblicz(z) == x + y);
+    CHECK(z.Oblicz() == x + y);
 }
 
 TEST_CASE("Test WyrazenieZesp obliczanie wyrazenia 2") {  //Odejmowanie liczb zespolonych
@@ -39,7 +39,7 @@ TEST_CASE("Test WyrazenieZesp obliczanie wyrazenia 2") {  //Odejmowanie liczb ze
     z.Arg2.re = 1;
     z.Arg2.im = 4;
    
-    CHECK(Oblicz(z) == x - y);
+    CHECK(z.Oblicz() == x - y);
 }
 
 TEST_CASE("Test WyrazenieZesp obliczanie wyrazenia 3") {  //Mnozenie liczb zespolonych
@@ -59,7 +59,7 @@ TEST_CASE("Test WyrazenieZesp obliczanie wyrazenia 3") {  //Mnozenie liczb zespo
     z.Arg2.re = 3;
     z.Arg2.im = -5;
    
-    CHECK(Oblicz(z) == x * y);
+    CHECK(z.Oblicz() == x * y);
 }
 
 TEST_CASE("Test WyrazenieZesp obliczanie wyrazenia 4") {  //Dziel liczb zespolonych
@@ -77,8 +77,9 @@ TEST_CASE("Test WyrazenieZesp obliczanie wyrazenia 4") {  //Dziel liczb zespolon
     z.Op = Op_Dziel;
     z.Arg2.re = 2;
     z.Arg2.im = 1;
-   
-    CHECK(Oblicz(z) == x / y);
+    
+
+    CHECK(z.Oblicz() == x / y);
 }
 /*
 TEST_CASE("Test WyrazenieZesp wyswietlanie") {

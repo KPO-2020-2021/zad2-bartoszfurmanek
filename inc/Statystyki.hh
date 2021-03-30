@@ -9,15 +9,17 @@ struct Statystyka
 {
 int popr;   //Pole reprezentujace ilosc poprawnych odpowiedzi
 int blad;   //Pole reprezentujace ilosc blednych odpowiedzi
+
+public:
+
+void Clear();
+
+void PoprawnaOdpowiedz();
+
+void BlednaOdpowiedz();
+
+float ProcentPoprawnych();
+
+void Wyswietl();
 };
-
-void Clear(Statystyka &Stat);
-
-void PoprawnaOdpowiedz(Statystyka &Stat);
-
-void BlednaOdpowiedz(Statystyka &Stat);
-
-float ProcentPoprawnych(Statystyka &Stat);
-
-void Wyswietl(Statystyka Stat);
 #endif
