@@ -1,8 +1,10 @@
 #include "LZespolona.hh"
 #include <iostream>
 #include <math.h>
+#include <tgmath.h>
 
 #define MIN_ROZNICA 0.0001
+#define PI 3.141592
 
 using namespace std;
 
@@ -235,5 +237,51 @@ if(!WczytajZnak(StrmWej, ')'))            //Sprawdzenie czy znak jest nawiasem (
 return StrmWej;
 }
 
+
+/*Modyfikacje po złożeniu programu*/
+
+double LZespolona::Arg()const
+{
+double Kat;
+if(this->re != 0)
+    {
+    Kat = atan2(this->im, this->re)*180/PI;
+    }
+else
+    {
+    if(this->im > 0)
+        {
+        Kat = 90;
+        }
+    else if(this->im < 0)
+        {
+        Kat = 270;
+        }
+    else
+        {
+        cout << "Argument jest nieokreslony" << endl;
+        }
+    }
+if(Kat<0)
+    {
+    Kat+=360;
+    }
+return Kat;
+}
+
+
+LZespolona LZespolona::operator += (const LZespolona Z)
+{
+this->re+=Z.re;
+this->im+=Z.im;
+return *this;
+}
+
+
+LZespolona LZespolona::operator /= (LZespolona Z)     //Przy LZespolona Z musiałem usunąc const, ponieważ był problem z użyciem funkcji Potegowanie, Sprzerzenie i Modul
+{
+*this=((*this)*Z.Sprzerzenie())/Potegowanie(Z.Modul());
+return *this;
+}
 
 

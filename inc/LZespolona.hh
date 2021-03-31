@@ -31,11 +31,17 @@ double Modul();
 
 LZespolona Sprzerzenie();
 
-LZespolona operator / (const LZespolona  Z)const;
+LZespolona operator / (LZespolona  Z)const;
 
 bool operator == ( LZespolona Z)const;
 
 LZespolona operator / (double Liczba)const;
+
+double Arg()const;
+
+LZespolona operator += (const LZespolona Z);
+
+LZespolona operator /= (LZespolona Z);
 
 friend ostream& operator << (ostream &StrmWyj, LZespolona Z);
 
